@@ -10,7 +10,8 @@ import subprocess as sp
 from tensorflow import keras
 import subprocess as sp
 
-def make_predictions(batch_i):
+# making predictions with the model
+def make_predictions(batch_i): 
     #config = tf.compat.v1.ConfigProto()
     #config.gpu_options.per_process_gpu_memory_fraction = 0.1
     #session = , ...)
@@ -53,51 +54,37 @@ def make_predictions(batch_i):
         os.remove(fpt_root+"/pc_"+str(batch_i)+"_cicular4.npy")
         return 0
     
-def crossentropy(y_true,y_pred):
-    return tf.reduce_mean(-1.*y_true[:,0]*tf.math.log(tf.clip_by_value(y_pred[:,0],1e-10,1.)) - (y_true[:,1])*tf.math.log(tf.clip_by_value(y_pred[:,1],1e-10,1.)))
-
-
+# The index interval of the pubcem sdf files
 delta=500000
 
 ind_i=1
-n_proc=24
-ind_f=delta
-#ind_i=131500001
-#ind_f=132000000
-ind_i=1
 ind_f=500000
 
+# I understand this is the for loop that is being used to download (all 312?) sdf.gz files from pubchem
 for i in range(312):#range(312):    
     ti=time.time()
-    #print(i)
-    sp.call("curl -p "+"""--insecure "https://ftp.ncbi.nlm.nih.gov/pubchem/Compound/CURRENT-Full/SDF/Compound_"""+f'{ind_i:09}'+"""_"""+f'{ind_f:09}'+""".sdf.gz" """+"-o Compound_"+f'{ind_i:09}'+"""_"""+f'{ind_f:09}'+".sdf.gz",shell=True)
-    sp.call("gunzip Compound_"+f'{ind_i:09}'+"""_"""+f'{ind_f:09}'+".sdf.gz",shell=True)
-    #print(time()-ti)
-    #exit()
+    print(i)
+    # see if curl has a flag to change the directory (downlaid destination)
+    sp.call("curl -p "+"""--insecure "https://ftp.ncbi.nlm.nih.gov/pubchem/Compound/CURRENT-Full/SDF/Compound_"""+f'{ind_i:09}'+"""_"""+f'{ind_f:09}'+""".sdf.gz" """+"-o Compound_"+f'{ind_i:09}'+"""_"""+f'{ind_f:09}'+".sdf.gz",shell=True) # Pythoin string formatting
+    # Windows does not have a gunzip command
+    sp.call("gunzip Compound_"+f'{ind_i:09}'+"""_"""+f'{ind_f:09}'+".sdf.gz",shell=True) # shell=True makes the string be called as command
+    print(time()-ti)
+    #exit() - kills the program right here
 
+    # figure out fingerprints with rdkit
+    # make predictions with the model
+    # calculate drug likeness
+    # For each compound, create three arrays (see diagram)
+
+    # The directory to store the pubchem data
     fpt_root="/home/jacob/More_Data/ligand_NN_2_15_21/screening_compounds/ml_model/pubchem/pub_chem_"+str(i)
     sdf_file="Compound_"+f'{ind_i:09}'+"""_"""+f'{ind_f:09}'+".sdf"
     if not os.path.isdir(fpt_root):
         os.mkdir(fpt_root)
-    #multiprocess parsing the .sdf files to circular features length 4 
-    #compute fingerprints for molecules in each .sdf
-    #multiprocess generating fingerprints
-    if os.path.isfile("completed.txt"):
-        os.remove("completed.txt") 
-    fo=open("make_fpts.sh",'w')
-    fo.write("""eval "$(conda shell.bash hook)" """+"\n")
-    fo.write("conda activate my-rdkit-env"+"\n")
-    fo.write("python generate_circ4.py "+sdf_file+" "+fpt_root+" \n")
-    fo.close()
-    sp.call("bash make_fpts.sh",shell=True)
+    # multiprocess parsing the .sdf files to circular features length 4 
+    # compute fingerprints for molecules in each .sdf
+    # multiprocess generating fingerprints
 
-    waiting=1
-    while waiting:
-        if os.path.isfile("completed.txt"):
-            waiting=0
-        else:
-            time.sleep(.01)
-    os.remove("completed.txt") 
 
     #determine n_batch
     batch_files=os.listdir(fpt_root+"/")
@@ -120,7 +107,5 @@ for i in range(312):#range(312):
 
     os.remove(sdf_file)
 
-    ind_i+=delta
+    ind_i+=delta # changing indices for the next pubchem sdf.
     ind_f+=delta
-    if len(batched_files)>0:
-        print(i,time.time()-ti,sum(n_active))

@@ -6,6 +6,7 @@ from rdkit.Chem import DataStructs
 import multiprocessing as mp
 import sys
 from time import time
+
 RDLogger.DisableLog('rdApp.*')
 def generate_fpts(xx):
     smiles=xx[0]
