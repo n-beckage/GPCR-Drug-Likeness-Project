@@ -1,0 +1,230 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"pred",
+				"pred_act"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": ".gitattributes",
+			"settings":
+			{
+				"buffer_size": 66,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+	],
+	"file_history":
+	[
+		"/C/Users/nbeck/AppData/Local/Temp/scp28218/gpfs1/home/n/b/nbeckage/GPCR/hello.py",
+		"/C/Users/nbeck/AppData/Local/Temp/scp26985/gpfs1/home/n/b/nbeckage/GPCR/hello.py",
+		"/C/Users/nbeck/AppData/Local/Temp/scp26628/gpfs1/home/n/b/nbeckage/GPCR/hello.py",
+		"/C/Users/nbeck/AppData/Local/Temp/scp24631/gpfs1/home/n/b/nbeckage/GPCR/hello.py",
+		"/C/Users/nbeck/AppData/Local/Temp/scp23183/gpfs1/home/n/b/nbeckage/GPCR/hello.py",
+		"/C/Users/nbeck/OneDrive/Desktop/Spring 2022/Li Lab/GPCR-Drug-Likeness-Project/generate_circ4.py",
+		"/C/Users/nbeck/OneDrive/Desktop/Spring 2022/Li Lab/GPCR-Drug-Likeness-Project/make_predictions.py",
+		"/C/Users/nbeck/OneDrive/Desktop/Spring 2022/Li Lab/GPCR-Drug-Likeness-Project/download_pubchem.py",
+		"/C/Users/nbeck/OneDrive/Desktop/Spring 2022/Li Lab/Editing files using python.py",
+		"/C/Users/nbeck/AppData/Local/Temp/scp19586/gpfs1/home/n/b/nbeckage/GPCR/hello.py",
+		"/C/Users/nbeck/AppData/Local/Temp/scp15576/gpfs1/home/n/b/nbeckage/GPCR/hello.py",
+		"/C/Users/nbeck/AppData/Local/Temp/scp13222/gpfs1/home/n/b/nbeckage/GPCR/hello.py",
+		"/C/Users/nbeck/AppData/Local/Temp/scp11983/gpfs1/home/n/b/nbeckage/GPCR/hello.py",
+		"/C/Users/nbeck/AppData/Local/Temp/scp09646/gpfs1/home/n/b/nbeckage/GPCR/hello.py",
+		"/C/Users/nbeck/OneDrive/Desktop/Spring 2022/Li Lab/hello.py",
+		"/C/ProgramData/Anaconda3/Lib/site-packages/conda_merge.py",
+		"/C/Users/nbeck/OneDrive/Desktop/Spring 2022/Li Lab/test.py",
+		"/C/Users/nbeck/AppData/Roaming/Sublime Text/Packages/User/new system",
+		"/C/Users/nbeck/OneDrive/Desktop/hello.py"
+	],
+	"find":
+	{
+		"height": 22.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"scrollbar_highlights": true,
+		"show_context": true,
+		"use_buffer2": true,
+		"use_gitignore": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": ".gitattributes",
+					"selected": true,
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 66,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Git Formats/Git Attributes.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"stack_multiselect": false,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 22.0
+	},
+	"input":
+	{
+		"height": 35.3333333333
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "Packages/Python/Python.sublime-build",
+	"project": "GPCR-Drug-Likeness-Project.sublime-project",
+	"replace":
+	{
+		"height": 40.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 211.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
