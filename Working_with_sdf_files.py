@@ -75,7 +75,7 @@ for i in np.arange(len(theMols)):
    row.append(QED.default(theMols[i]))
    df.loc[len(df.index)]=row
 
-
+df.to_csv("PubChemData.csv")
 
 
 
