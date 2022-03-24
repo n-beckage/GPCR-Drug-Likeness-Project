@@ -45,15 +45,15 @@ type(ranSamp[0]) # the objects in this array are rdkit Mol objects
 
 
 # This was throwing an error because  for whatever reason, rdkit couldn't make some of the odjects from our .sdf file into Mol objects
-for mol in ranSamp:
-   mol.GetNumAtoms()
+# for mol in ranSamp:
+#    mol.GetNumAtoms()
 
 # to figure out just how many or our objects were correctly converted to Mol objects, I created this simple counter:
-x = 0
-for i in ranSamp:
-  if i is not None:
-      x += 1
-      print(x)
+# x = 0
+# for i in ranSamp:
+#   if i is not None:
+#       x += 1
+#       print(x)
 # which returns 9982 iterations, which means that 18/10000 objects were not succesfully converted to Mol objects. Not bad.
 # We'll just have to make a loop to have to remove the 18 objects of type None
 theMols = []
@@ -68,14 +68,14 @@ len(theMols) # should be 9982
 ### make a dataframe of QED properties for each mol
 ##### will probaly want to add more properties later for Ghose method
 
-df=pd.DataFrame(columns=["MW", "ALOGP", "HBA", "HBD", "PSA", "ROTB", "AROM", "ALERTS"])
+df=pd.DataFrame(columns=["MW", "ALOGP", "HBA", "HBD", "PSA", "ROTB", "AROM", "ALERTS","QED"])
 
 for i in np.arange(len(theMols)):
    row=list(QED.properties(theMols[i]))
    row.append(QED.default(theMols[i]))
    df.loc[len(df.index)]=row
 
-df.to_csv("PubChemData.csv")
+df.to_csv("PubChemData.csv",index=False)
 
 
 
