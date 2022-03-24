@@ -2,15 +2,14 @@ import numpy as np
 import sys
 from multiprocessing import Pool
 import os
-import time
-os.environ["CUDA_VISIBLE_DEVICES"]="0"    
+import time   
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2' 
 import tensorflow as tf
 import subprocess as sp
 from tensorflow import keras
 import subprocess as sp
 
-# making predictions with the model
+# making predictions with the model - IGNORE FOR NOW
 def make_predictions(batch_i): 
     #config = tf.compat.v1.ConfigProto()
     #config.gpu_options.per_process_gpu_memory_fraction = 0.1

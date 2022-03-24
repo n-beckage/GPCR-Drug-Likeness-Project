@@ -21,16 +21,23 @@ def generate_fpts(xx):
     cicular4_nams=[]
     for iit,smile in enumerate(smiles):
         try:
-            #mol=Chem.MolFromSmiles(smile)
-            #moll=Chem.AddHs(mol)
-            #mol_s=Chem.MolToSmiles(moll)
+            mol=Chem.MolFromSmiles(smile)
+            # Add hydrogens to the mol objects
+            moll=Chem.AddHs(mol)
+            mol_s=Chem.MolToSmiles(moll)
             mol2=Chem.MolFromSmiles(smile)
             moli=Chem.AddHs(mol2)
-            if moli is not None:
+            # this is the meat of the function
+            if moli is not None: # you know what this does
+                # adding some custom filters before making the fingerprints (notice that we added H's first)
                 if moli.GetNumAtoms()<=80 and all([x.GetAtomicNum() in pos_at for x in moli.GetAtoms()]) and all([x.GetFormalCharge() in pos_charges for x in moli.GetAtoms()]):
-                    #arr5 = np.zeros((0,), dtype=np.float32)
-                    #DataStructs.ConvertToNumpyArray(AllChem.GetMorganFingerprintAsBitVect(moli,4, nBits=1024),arr5)
-                    #cicular4.append(arr5)
+                    # creating an empty numpy array
+                    arr5 = np.zeros((0,), dtype=np.float32)
+                    # Creating the fingerprints and also converting them to a numpy array, storing in arr5
+                    DataStructs.ConvertToNumpyArray(AllChem.GetMorganFingerprintAsBitVect(moli,4, nBits=1024),arr5)
+                    # adding the fingerprints (as np arrays) to list
+                    cicular4.append(arr5)
+                    # creating a corresponding list of smile strings for the mols
                     cicular4_nams.append(smiles[iit])
         except:
             pass
