@@ -25,7 +25,9 @@ def generate_fpts(xx):
             # Add hydrogens to the mol objects
             moll=Chem.AddHs(mol)
             mol_s=Chem.MolToSmiles(moll)
+            # seems like mol2 is the as mol
             mol2=Chem.MolFromSmiles(smile)
+            # So moli is the same as moll
             moli=Chem.AddHs(mol2)
             # this is the meat of the function
             if moli is not None: # you know what this does

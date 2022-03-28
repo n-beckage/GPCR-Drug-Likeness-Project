@@ -27,10 +27,12 @@ suppl_indices=np.arange(len(suppl))
 # these should be the same
 len(suppl_indices) # 443086
 len(suppl) # 443086
-rand_indices = np.random.choice(suppl_indices, size=10000, replace=False)
+# NOTE: CHANGE THE SIZE OF n HERE TO SOMETHING SMALLER IF YOU'RE GOING TO MESS WITH THIS SCRIPT OTHERWISE IT WILL TAKE FOREVER TO RUN
+n=1000
+rand_indices = np.random.choice(suppl_indices, size=n, replace=False)
 
 # Now the task is to create a more manageable subset of the data by writing a for loop that will loop through ran_indices
-# (so that the size is 10000), and add suppl[random_indices[i]] to the subset each iteration.
+# (so that the size is n), and add suppl[random_indices[i]] to the subset each iteration.
 
 # you need the int() function to convert i from an object type 'numpy.int32' into a plain basic python int
 # type(rand_indices[0]) # will return 'numpy.int32'
@@ -39,7 +41,7 @@ ranSamp=[]
 for i in rand_indices:
    ranSamp.append(suppl[int(i)]) 
 
-len(ranSamp) # should be 10000
+len(ranSamp) # should be equal to n
 ranSamp[0] # should be the first item
 type(ranSamp[0]) # the objects in this array are rdkit Mol objects
 
@@ -60,7 +62,13 @@ theMols = []
 for i in np.arange(len(ranSamp)):
    if ranSamp[i] is not None:
       theMols.append(ranSamp[i])
-len(theMols) # should be 9982
+len(theMols) # should be a bit less than n
+
+# This saves the mol object list as an .npy object that can be loaded into other scripts.
+np.save("theMols.npy",theMols, allow_pickle=True)
+# note that when you load in the .npy object, it is now an np.array rather than a list -> so np.save must convert a list to array.
+x=np.load("theMols.npy", allow_pickle=True)
+print(x[0])
 
 # Now we have a list (NOT numpy array) of our complete Mol objects called theMols
 
@@ -68,14 +76,13 @@ len(theMols) # should be 9982
 ### make a dataframe of QED properties for each mol
 ##### will probaly want to add more properties later for Ghose method
 
-df=pd.DataFrame(columns=["MW", "ALOGP", "HBA", "HBD", "PSA", "ROTB", "AROM", "ALERTS","QED"])
+# df=pd.DataFrame(columns=["MW", "ALOGP", "HBA", "HBD", "PSA", "ROTB", "AROM", "ALERTS","QED"])
 
-for i in np.arange(len(theMols)):
-   row=list(QED.properties(theMols[i]))
-   row.append(QED.default(theMols[i]))
-   df.loc[len(df.index)]=row
+# for i in np.arange(len(theMols)):
+#    row=list(QED.properties(theMols[i]))
+#    row.append(QED.default(theMols[i]))
+#    df.loc[len(df.index)]=row
 
-df.to_csv("PubChemData.csv",index=False)
-
-
+# df.to_csv("PubChemData.csv",index=False)
+# print("done")
 

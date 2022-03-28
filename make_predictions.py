@@ -15,7 +15,7 @@ def crossentropy(y_true,y_pred):
     return tf.reduce_mean(-1.*y_true[:,0]*tf.math.log(tf.clip_by_value(y_pred[:,0],1e-10,1.)) - (y_true[:,1])*tf.math.log(tf.clip_by_value(y_pred[:,1],1e-10,1.)))
 
 # pass the whole array of fingerprints, and predictions will be made for each
-def make_predictions(input_ftp): 
+def make_predictions(input_fpt): 
     activity_model=keras.models.load_model("model_cicular4.tf",custom_objects={'crossentropy':crossentropy}) # may need to adjust directory based on what the current wd is. An absolute path may be best
     activity_model.compile(
             loss=keras.losses.MeanSquaredError(),# keras.losses.MeanSquaredError(),
@@ -33,8 +33,9 @@ def make_predictions(input_ftp):
 # Load model up here(first)
 
 # Hint: ctrl + / will comment out highlighted text
-# for i in range(312):#range(312):    
-#    ti=time.time()
-#    #print(i)
-#    sp.call("curl -p "+"""--insecure "https://ftp.ncbi.nlm.nih.gov/pubchem/Compound/CURRENT-Full/SDF/Compound_"""+f'{ind_i:09}'+"""_"""+f'{ind_f:09}'+""".sdf.gz" """+"-o Compound_"+f'{ind_i:09}'+"""_"""+f'{ind_f:09}'+".sdf.gz",shell=True)
-#    sp.call("gunzip Compound_"+f'{ind_i:09}'+"""_"""+f'{ind_f:09}'+".sdf.gz",shell=True)
+
+fpts=np.load("fingerprints.npy",allow_pickle=True)
+x=make_predictions(fpts)
+
+# Last time I ran this script I got this error:
+# ValueError: Failed to convert a NumPy array to a Tensor (Unsupported object type numpy.ndarray).
