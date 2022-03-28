@@ -1,0 +1,8 @@
+# Saved numpy objects
+*.npy
+
+# Sublime projects
+*.sublime-project
+
+# Sublime workspaces
+*.sublime-workspace
