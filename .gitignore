@@ -1,8 +1,17 @@
 # Saved numpy objects
 *.npy
 
+# The numpy_objs folder
+/numpy_objs/
+
 # Sublime projects
 *.sublime-project
 
 # Sublime workspaces
 *.sublime-workspace
+
+# Images
+*.png
+
+# The plots folder
+/plots/

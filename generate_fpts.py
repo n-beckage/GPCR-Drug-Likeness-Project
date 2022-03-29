@@ -25,6 +25,7 @@ def generate_fpts(molList):
     for i in np.arange(len(molList)): # iterate through molList
         moli_withH=Chem.AddHs(molList[i])
         smile=Chem.MolToSmiles(moli_withH)
+        # NOTE: some objects will be removed by this filter, so fpt_array and smile_list will be smaller than molList
         if moli_withH.GetNumAtoms()<=80 and all([x.GetAtomicNum() in pos_at for x in moli_withH.GetAtoms()]) and all([x.GetFormalCharge() in pos_charges for x in moli_withH.GetAtoms()]):
             # creating an empty numpy array
             arr = np.zeros((0,), dtype=np.float32)
@@ -34,15 +35,12 @@ def generate_fpts(molList):
             fpt_arr.append(arr)
             # creating a corresponding list of smile strings for the mols
             smile_list.append(smile)
-        else: 
-            fpt_arr.append(None)
-            smile_list.append(None)
     return (fpt_arr,smile_list)
 
 
 # running the function
 fingerprints, smiles = generate_fpts(theMols)
 
-# saving the objects for later use
-# np.save("fingerprints.npy",fingerprints,allow_pickle=True)
-# np.save("smiles.npy",smiles,allow_pickle=True)
+################## saving the objects for later use ###############################
+np.save("fingerprints.npy",fingerprints,allow_pickle=True)
+np.save("smiles.npy",smiles,allow_pickle=True)
