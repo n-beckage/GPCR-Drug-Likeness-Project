@@ -32,7 +32,7 @@ def make_predictions(input_fpt):
 
 
 ###################### Load fingerprints and run model ######################
-fpts=np.load("fingerprints.npy",allow_pickle=True)
+fpts=np.load("numpy_objs/fingerprints.npy",allow_pickle=True)
 preds=make_predictions(fpts)
 
 # RESOLVED
@@ -44,5 +44,5 @@ preds=make_predictions(fpts)
 # preds is an array of activity scores for each fingerprint. The activity scores themselves are actually an array of 2 values \: [activity_score, 1-activity_score]
 preds
 # Let's save preds and work with it again in a new script
-np.save("GPCR_predictions.npy",preds,allow_pickle=True)
+np.save("numpy_objs/GPCR_predictions.npy",preds,allow_pickle=True)
 

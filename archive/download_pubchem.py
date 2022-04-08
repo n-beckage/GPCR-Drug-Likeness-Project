@@ -1,4 +1,8 @@
+##### A R C H I V E D #####
+
 # the goal of this script is to test the methods of download_pubchem.py to determine to see if they work with one sdf file
+#### NOTE: THIS SCRIPT IS NO LONGER NEEDED FOR THIS PROJECT, SINCE JACOB SUPPLIED A LIST OF 1 MILLION SMILE STRINGS TO WORK WITH
+
 import subprocess as sp
 from rdkit import Chem
 from rdkit.Chem import rdmolfiles as rd
@@ -20,8 +24,8 @@ ind_f=500000
 
 
 ################## Reading in the PubChem data #############################
-### the goal here is to end up with a celan python list of rdkit Mol objects
-suppl = rd.SDMolSupplier('../Compound_000000001_000500000.sdf')
+### the goal here is to end up with a clean python list of rdkit Mol objects
+suppl = rd.SDMolSupplier('../../CS 287/Project/CS287-Project/Compound_000000001_000500000.sdf')
 suppl_indices=np.arange(len(suppl))
 
 # these should be the same
@@ -65,9 +69,9 @@ for i in np.arange(len(ranSamp)):
 len(theMols) # should be a bit less than n
 
 # This saves the mol object list as an .npy object that can be loaded into other scripts.
-np.save("theMols.npy",theMols, allow_pickle=True)
+np.save("numpy_objs/theMols.npy",theMols, allow_pickle=True)
 # note that when you load in the .npy object, it is now an np.array rather than a list -> so np.save must convert a list to array.
-x=np.load("theMols.npy", allow_pickle=True)
+x=np.load("numpy_objs/theMols.npy", allow_pickle=True)
 print(x[0])
 
 # Now we have a list (NOT numpy array) of our complete Mol objects called theMols

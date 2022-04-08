@@ -15,3 +15,6 @@
 
 # The plots folder
 /plots/
+
+# Don't need to track server jobs
+*.sh
