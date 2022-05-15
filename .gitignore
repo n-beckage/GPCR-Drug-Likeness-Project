@@ -21,3 +21,6 @@
 
 # Don't need _pycache_ folder
 __pycache__/**
+
+# or pycache files
+*.pyc
