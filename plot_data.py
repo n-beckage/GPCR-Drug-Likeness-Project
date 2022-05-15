@@ -23,9 +23,9 @@ plt.hist2d(activity,qed,bins=10,cmap=plt.get_cmap("gist_ncar"))
 #grab the axes we plotted to
 
 #set some extra tick options for making it look nice
-axes.tick_params(axis='both',direction='in', labelsize=10)
-axes.set_xlabel("GPCR Activity Score")
-axes.set_ylabel("QED")
+plt.tick_params(axis='both',direction='in', labelsize=10)
+plt.xlabel("GPCR Activity Score")
+plt.ylabel("QED")
 
 #makes a nice layout
 plt.tight_layout()
@@ -154,11 +154,11 @@ defaults=['tab:blue','tab:orange']
 
 # QED
 plt.figure(figsize=(3,3))
-plt.hist(upQ_act, bins=100, alpha=0.5, label="QED > 0.5",color=defaults[0],density=True)
-plt.hist(lowQ_act, bins=100, alpha=0.5, label="QED < 0.5",color=defaults[1],density=True)
+plt.hist(upQ_act, bins=100, alpha=0.5, label="QED > 0.5",color=defaults[0])
+plt.hist(lowQ_act, bins=100, alpha=0.5, label="QED < 0.5",color=defaults[1])
 plt.xlabel("Activity Score", size=14)
 plt.ylabel("Count", size=14)
-plt.title("QED, p="+f"{q_pval:.4g}")
+plt.title("QED, p="+f"{q_pval:.10g}")
 plt.legend(loc='upper right')
 plt.axvline(upQ_act.mean(),linestyle='--',color=defaults[0])
 plt.axvline(lowQ_act.mean(),linestyle='--',color=defaults[1])
@@ -168,11 +168,11 @@ plt.close()
 
 # Lipinksi
 plt.figure(figsize=(3,3))
-plt.hist(passLip_act, bins=100, alpha=0.5, label="Druglike",color=defaults[0],density=True)
-plt.hist(failLip_act, bins=100, alpha=0.5, label="Not Druglike",color=defaults[1],density=True)
+plt.hist(passLip_act, bins=100, alpha=0.5, label="Druglike",color=defaults[0])
+plt.hist(failLip_act, bins=100, alpha=0.5, label="Not Druglike",color=defaults[1])
 plt.xlabel("Activity Score", size=14)
 plt.ylabel("Count", size=14)
-plt.title("Lipinski Ro5, p="+f"{lip_pval:.4g}")
+plt.title("Lipinski Ro5, p="+f"{lip_pval:.10g}")
 plt.legend(loc='upper right')
 plt.axvline(passLip_act.mean(),linestyle='--',color=defaults[0])
 plt.axvline(failLip_act.mean(),linestyle='--',color=defaults[1])
@@ -182,11 +182,11 @@ plt.close()
 
 # Veber
 plt.figure(figsize=(3,3))
-plt.hist(passVeb_act, bins=100, alpha=0.5, label="Druglike",color=defaults[0],density=True)
-plt.hist(failVeb_act, bins=100, alpha=0.5, label="Not Druglike",color=defaults[1],density=True)
+plt.hist(passVeb_act, bins=100, alpha=0.5, label="Druglike",color=defaults[0])
+plt.hist(failVeb_act, bins=100, alpha=0.5, label="Not Druglike",color=defaults[1])
 plt.xlabel("Activity Score", size=14)
 plt.ylabel("Count", size=14)
-plt.title("Veber method, p="+f"{veb_pval:.4g}")
+plt.title("Veber method, p="+f"{veb_pval:.10g}")
 plt.legend(loc='upper right')
 plt.axvline(passVeb_act.mean(),linestyle='--',color=defaults[0])
 plt.axvline(failVeb_act.mean(),linestyle='--',color=defaults[1])
@@ -196,11 +196,11 @@ plt.close()
 
 # Ghose
 plt.figure(figsize=(3,3))
-plt.hist(passGho_act, bins=100, alpha=0.5, label="Druglike",color=defaults[0],density=True)
-plt.hist(failGho_act, bins=100, alpha=0.5, label="Not Druglike",color=defaults[1],density=True)
+plt.hist(passGho_act, bins=100, alpha=0.5, label="Druglike",color=defaults[0])
+plt.hist(failGho_act, bins=100, alpha=0.5, label="Not Druglike",color=defaults[1])
 plt.xlabel("Activity Score", size=14)
 plt.ylabel("Count", size=14)
-plt.title("Ghose method, p="+f"{gho_pval:.4g}")
+plt.title("Ghose method, p="+f"{gho_pval:.10g}")
 plt.legend(loc='upper right')
 plt.axvline(passGho_act.mean(),linestyle='--',color=defaults[0])
 plt.axvline(failGho_act.mean(),linestyle='--',color=defaults[1])
@@ -208,4 +208,7 @@ plt.tight_layout()
 plt.savefig("plots/Gho_dists.png",dpi=300,transparent=True)
 plt.close()
 
-print("QED Pval=",q_stat,"LIP Pval=",lip_stat,"VEB Pval=",veb_stat,"GHO Pval=",gho_stat)
+print("QED Pval=",q_pval,"LIP Pval=",lip_pval,"VEB Pval=",veb_pval,"GHO Pval=",gho_pval)
+
+# The p-values are so infintesimally small (due in part to the massive sample size) they just show up as 0
+# https://stackoverflow.com/questions/20530138/scipy-p-value-returns-0-0

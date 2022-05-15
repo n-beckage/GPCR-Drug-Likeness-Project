@@ -63,9 +63,9 @@ print("Was the cutoff applied correctly?")
 print(len(GLASS_molact)==len(GLASS_actbin))
 
 # Find and replace these samples with full lists before running on server
-# gl_act_samp=[GLASS_actbin[i] for i in range(1000)]
-# gl_smiles_samp=[GLASS_smiles[i] for i in range(1000)]
-# du_smiles_samp=[DUDE_smiles[i] for i in range(1000)]
+gl_act_samp=[GLASS_actbin[i] for i in range(1000)]
+gl_smiles_samp=[GLASS_smiles[i] for i in range(1000)]
+du_smiles_samp=[DUDE_smiles[i] for i in range(1000)]
 
 
 ### Getting Druglikeness metrics for GLASS mols and putting them into a df
@@ -76,8 +76,8 @@ gho=[]
 
 # Note: order properties in props is:
 #       MW, ALOGP, HBA, HBD, PSA, ROTB, AROM, ALERTS
-for i in range(len(GLASS_actbin)):
-    mol=Chem.MolFromSmiles(GLASS_smiles[i])
+for i in range(len(gl_act_samp)):
+    mol=Chem.MolFromSmiles(gl_smiles_samp[i])
     qed.append(QED.default(mol))
     lip.append(Ro5(mol))
     MR=Crippen.MolMR(mol)
@@ -86,8 +86,8 @@ for i in range(len(GLASS_actbin)):
     veb.append(veber(props[3],props[2],props[5]))
     gho.append(ghose(props[0],props[1],MR,n_atom))
 
-temp_dict={"SMILE":GLASS_smiles,
-            "Activity":GLASS_actbin,
+temp_dict={"SMILE":gl_smiles_samp,
+            "Activity":gl_act_samp,
             "QED":qed,
             "Lipinski":lip,
             "Veber":veb,
@@ -102,8 +102,8 @@ gho=[]
 
 # Note: order properties in props is:
 #       MW, ALOGP, HBA, HBD, PSA, ROTB, AROM, ALERTS
-for i in range(len(DUDE_smiles)):
-    mol=Chem.MolFromSmiles(DUDE_smiles[i])
+for i in range(len(du_smiles_samp)):
+    mol=Chem.MolFromSmiles(du_smiles_samp[i])
     qed.append(QED.default(mol))
     lip.append(Ro5(mol))
     MR=Crippen.MolMR(mol)
@@ -113,7 +113,7 @@ for i in range(len(DUDE_smiles)):
     gho.append(ghose(props[0],props[1],MR,n_atom))
 
 # Note there is no activity column for DUDE, becuase they are all inactive
-temp_dict={"SMILE":DUDE_smiles,
+temp_dict={"SMILE":du_smiles_samp,
             "QED":qed,
             "Lipinski":lip,
             "Veber":veb,
@@ -121,5 +121,5 @@ temp_dict={"SMILE":DUDE_smiles,
 dudf=pd.DataFrame(temp_dict)
 
 ### SAVE THE DATAFRAMES
-gldf.to_pickle("dataframes/dudedf.zip")
-dudf.to_pickle("dataframes/glassdf.zip")
+gldf.to_pickle("dataframes/glassdf.zip")
+dudf.to_pickle("dataframes/dudedf.zip")
