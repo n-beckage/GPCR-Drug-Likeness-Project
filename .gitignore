@@ -20,4 +20,4 @@
 *.sh
 
 # Don't need _pycache_ folder
-/__pycache__/**
+__pycache__/**
