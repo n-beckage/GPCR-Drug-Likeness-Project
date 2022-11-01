@@ -81,6 +81,8 @@ print("Do all the GLASS plots have the same number of observations?")
 print(glga.stack().sum()==glva.stack().sum()==glla.stack().sum()==gldf['QED'].count())
 print("For GLASS, there should be "+str(gldf['QED'].count())+" observations")
 
+print("Glass activity counts:\n"+str(gldf["Activity"].value_counts()))
+
 ## Actual VACC output:
 
 # Do all the DUDE plots have the same number of observations?
@@ -89,3 +91,7 @@ print("For GLASS, there should be "+str(gldf['QED'].count())+" observations")
 # Do all the GLASS plots have the same number of observations?
 # True
 # For GLASS, there should be 543475 observations
+# Glass activity counts:
+# Active      423166
+# Inactive    120309
+# Name: Activity, dtype: int64

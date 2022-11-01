@@ -61,3 +61,21 @@ plt.xlabel("QED")
 plt.ylabel("Count")
 plt.title("DUDE QED distribution")
 plt.show()
+
+### making sure ends meet
+print("Do all the DUDE plots have the same number of observations?")
+print(dugo.sum()==duve.sum()==duli.sum()==dudf['QED'].count())
+print("For DUDE, there should be "+str(dudf['QED'].count())+" observations")
+
+print("Do all the GLASS plots have the same number of observations?")
+print(glga.stack().sum()==glva.stack().sum()==glla.stack().sum()==gldf['QED'].count())
+print("For GLASS, there should be "+str(gldf['QED'].count())+" observations")
+
+## Actual VACC output:
+
+# Do all the DUDE plots have the same number of observations?
+# True
+# For DUDE, there should be 79262 observations
+# Do all the GLASS plots have the same number of observations?
+# True
+# For GLASS, there should be 543475 observations

@@ -48,6 +48,8 @@ while Path(glass_molact_path+str(i)+"0000.npy").is_file(): # this works b/c GLAS
         glass_count+=10000
     i+=1
 
+
+
 # activities for GLASS need to be transformed into a binary cutoff
 # activities are measured in EC50 values with nM (nanomolar) units
 # The cutoff is 1 mM (micromolar), which equals 1000 nM
