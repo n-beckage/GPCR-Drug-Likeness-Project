@@ -1,6 +1,6 @@
 # README
 
-This folder contains python scripts to independently asses the correlation between GPCR activity as predicted by GPCRLigNet and drug-likeness. This task is broken down into the following scripts, which were consecutively ran in the following order:
+This repo contains python scripts to independently asses the correlation between GPCR activity as predicted by GPCRLigNet and drug-likeness. This task is broken down into the following scripts, which were consecutively ran in the following order:
 
 ### 1. `generate_ftps.py`
 
